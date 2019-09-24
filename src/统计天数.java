@@ -1,4 +1,6 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * <article>
@@ -34,29 +36,29 @@ public class 统计天数 {
      * f(i)表示以当前元素结尾的最长连续递增序列长度：如果当前元素大于上一元素f(i) = f(i-1) + 1；否则f(i) = 1；
      * 时间复杂度O(N)
      * 空间复杂度O(1)
+     *
      * @param args
      */
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int count = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(reader.readLine());
+        String[] split = reader.readLine().split(" ");
         int last = Integer.MIN_VALUE;
-        int [] result = new int[count];
+        int result = 0;
+        int max = 0;
         for (int i = 0; i < count; i++) {
-            int current = scanner.nextInt();
+            int current = Integer.parseInt(split[i]);
             if (i == 0) {
-                result[0] = 1;
+                result = 1;
                 continue;
             }
             if (current > last) {
-                result[i] = result[i - 1] + 1;
+                result++;
             } else {
-                result[i] = 1;
+                result = 1;
             }
+            max = Math.max(result, max);
             last = current;
-        }
-        int max = 0;
-        for (int i : result) {
-            max = Math.max(i, max);
         }
         System.out.println(max);
     }
