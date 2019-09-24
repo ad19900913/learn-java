@@ -1,3 +1,7 @@
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -32,12 +36,16 @@ public class 统计单词数 {
 
     /**
      * 状态机？
+     *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         char[] word = scanner.nextLine().toLowerCase().toCharArray();
         char[] article = scanner.nextLine().toLowerCase().toCharArray();
+//        List<String> strings = Files.readAllLines(Path.of("C:\\Users\\ad199\\Desktop\\testdata.in"));
+//        char[] word = strings.get(0).toLowerCase().toCharArray();
+//        char[] article = strings.get(1).toLowerCase().toCharArray();
 
         int w = 0;//匹配字母，代表下一个要查找的字母下标
         State state = State.SPACE;//从空格状态开始
@@ -48,15 +56,12 @@ public class 统计单词数 {
             switch (state) {
                 case SPACE:
                     if (c == ' ') {
-                        state = State.SPACE;
-                        w = 0;
-                    }
-                    if (c == word[0]) {
+
+                    } else if (c == word[0]) {
                         state = State.WORD;
                         w++;
                     } else {
                         state = State.LETTER;
-                        w = 0;
                     }
                     break;
                 case LETTER:
@@ -75,6 +80,7 @@ public class 统计单词数 {
                             w = 0;
                         } else {
                             state = State.LETTER;
+                            w = 0;
                         }
                     } else if (w < word.length) {
                         if (c == ' ') {
@@ -88,6 +94,12 @@ public class 统计单词数 {
                         }
                     }
                     break;
+            }
+        }
+        if (w == word.length) {
+            count++;
+            if (firstIndex == -1) {
+                firstIndex = article.length - word.length;
             }
         }
         if (count == 0) {
