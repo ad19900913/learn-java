@@ -1,10 +1,12 @@
+package 入门;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
  * <article>
- * <h1>统计天数</h1>
+ * <h1>入门.统计天数</h1>
  *
  *
  *

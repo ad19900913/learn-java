@@ -1,3 +1,5 @@
+package 入门;
+
 public class 打印超级玛丽 {
 
     public static void main(String[] args) {

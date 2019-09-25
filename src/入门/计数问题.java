@@ -1,3 +1,5 @@
+package 入门;
+
 import java.util.Scanner;
 
 /**

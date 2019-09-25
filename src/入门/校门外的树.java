@@ -1,8 +1,10 @@
+package 入门;
+
 import java.util.Scanner;
 
 /**
  * <article>
- * <h1>校门外的树</h1>
+ * <h1>入门.校门外的树</h1>
  *
  *
  *

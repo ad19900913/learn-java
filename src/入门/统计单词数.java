@@ -1,3 +1,5 @@
+package 入门;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * <article>
- * <h1>统计单词数</h1>
+ * <h1>入门.统计单词数</h1>
  *
  *
  *
