@@ -1,40 +1,60 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    private static int[] array;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int [] array = new int [26];
-        for (int i = 0; i < 4; i++) {
-            char[] chars = scanner.nextLine().toCharArray();
-            for (char aChar : chars) {
-                if (aChar >= 65 && aChar <= 90) {
-                    array[aChar - 65] += 1;
-                }
-            }
+        int n = scanner.nextInt();
+        array = new int[n];
+        int k = scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            int num = scanner.nextInt();
+            array[i] = num;
         }
-        int max = 0;
-        for (int i : array) {
-            max = Math.max(i, max);
+        //选数
+        int total = 0;
+        for (int i = 0; i <= n - k; i++) {
+            total += selectNumber(k, 0, i, n - 1);
         }
+        System.out.println(total);
+    }
 
-        List<String> list = new ArrayList<>();
-        for (int i = max; i > 0; i--) {
-            StringBuilder builder = new StringBuilder();
-            for (int i1 : array) {
-                if (i1 >= i) {
-                    builder.append("* ");
-                } else {
-                    builder.append("  ");
-                }
+    /**
+     * 选数
+     *
+     * @param remain 还剩几个数没选
+     * @param sum    当前选的所有数之和
+     * @param start  可以选择的数字起始下标
+     * @return 质数返回1，否则返回0
+     */
+    private static int selectNumber(int remain, int sum, int start, int end) {
+        if (remain == 0) {
+            if (isPrime(sum)) {
+                return 1;
             }
-            list.add(builder.toString());
+            return 0;
         }
-        for (String s : list) {
-            String substring = s.substring(0, s.lastIndexOf("*") + 1);
-            System.out.println(substring);
+        int result = 0;
+        for (int i = start; i <= end; i++) {
+            result += selectNumber(remain - 1, sum + array[i], i + 1, end);
         }
-        System.out.println("A B C D E F G H I J K L M N O P Q R S T U V W X Y Z");
+        return result;
+    }
+
+    /**
+     * 判断某数是否为素数
+     *
+     * @param n
+     * @return
+     */
+    private static boolean isPrime(int n) {
+        int max = (int) Math.sqrt(n);
+        for (int i = 2; i < max; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
