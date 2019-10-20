@@ -1,6 +1,11 @@
+package 入门;
+
 import java.util.Scanner;
 
-public class Main {
+/**
+ * 回文质数 Prime Palindromes
+ */
+public class 回文质数 {
 
     /**
      * 程序加速依赖以下结论：
