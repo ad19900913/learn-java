@@ -1,6 +1,32 @@
-import java.util.*;
+package 入门;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+/**
+ * <h1>Function</h1>
+ *
+ *
+ *
+ * <h2>题目描述</h2>
+ *     <div>对于一个递归函数w(a,b,c)
+ * <p>
+ * <p>
+ * - 如果a < 0 or b < 0 or c < 0就返回值1.
+ * - 如果a>20 or b>20 or c>20就返回w(20,20,20)
+ * - 如果a<b并且b<c 就返回w(a,b,c-1)+w(a,b-1,c-1)-w(a,b-1,c)
+ * - 其它的情况就返回w(a-1,b,c)+w(a-1,b-1,c)+w(a-1,b,c-1)-w(a-1,b-1,c-1)
+ * <p>
+ * 这是个简单的递归函数，但实现起来可能会有些问题。当a,b,c均为15时，调用的次数将非常的多。你要想个办法才行.
+ * <p>
+ * absi2011 : 比如 w(30,-1,0)既满足条件1又满足条件2
+ * <p>
+ * 这种时候我们就按最上面的条件来算
+ * <p>
+ * 所以答案为1
+ */
+public class 递归Function {
     private static int[][][] array = new int[22][22][22];
 
     public static void main(String[] args) {
