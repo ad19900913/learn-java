@@ -1,4 +1,9 @@
 # learn-java
 
-洛谷：https://www.luogu.org/training/mainpage
-记录自己学习java的一些测试代码、笔记等等
+洛谷：https://www.luogu.org/space/show?uid=253883
+记录自己学习算法的一些测试代码、笔记等等
+
+新手村开始时间-2019-09-21
+新手村结束时间-2019-10-28
+
+普及组开始时间-2019-10-28
