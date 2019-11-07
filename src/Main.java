@@ -29,29 +29,15 @@ public class Main {
             int direction = scanner.nextInt();
             int count = scanner.nextInt();
             count %= n;
-            if (direction == 0) {//左
-                if (nodes[index].flag == 0) {//朝内
-                    index-=count;
-                    if (index < 0) {
-                        index += n;
-                    }
-                } else {//朝外
-                    index+=count;
-                    if (index >= n) {
-                        index %= n;
-                    }
+            if ((direction ^ nodes[index].flag) == 0) {
+                index -= count;
+                if (index < 0) {
+                    index += n;
                 }
-            } else {//右
-                if (nodes[index].flag == 0) {//朝内
-                    index+=count;
-                    if (index >= n) {
-                        index %= n;
-                    }
-                } else {//朝外
-                    index-=count;
-                    if (index < 0) {
-                        index += n;
-                    }
+            } else {
+                index+=count;
+                if (index >= n) {
+                    index %= n;
                 }
             }
         }
