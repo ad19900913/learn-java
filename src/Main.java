@@ -47,30 +47,49 @@ public class Main {
         _list.sort(Point.COMPARATOR);
         int minus = scanner.nextInt();
         List<Point> list = processList(minus, _list);
+        int tax = 0;
+        getBestPrice(list, tax);
+    }
 
+    private static int getBestPrice(List<Point> list, int tax) {
+        return 0;
     }
 
     /**
      * 计算各价位下的销量
+     *
      * @param minus
      * @param _list
      * @return
      */
     private static List<Point> processList(int minus, List<Point> _list) {
         List<Point> list = new ArrayList<>();
-        int o_price = 0;
-        int n_price = 0;
+        Point o_point, n_point = null;
         for (Point point : _list) {
-            n_price = point.getPrice();
-            o_price = n_price;
-            if (o_price > 0 && n_price - o_price > 1) {
-                for (int i = o_price + 1; i < n_price; i++) {
-
+            o_point = n_point;
+            n_point = point;
+            if (o_point != null && n_point.price - o_point.price > 1) {
+                int step = (n_point.sales - o_point.sales) / (n_point.price - o_point.price);
+                for (int i = o_point.price + 1; i < n_point.price; i++) {
+                    list.add(new Point(i, o_point.price + (i - o_point.price) * step));
                 }
             }
             list.add(point);
         }
-
+        //已知最高价位下销量大于0,继续填充列表,直到销量<=0
+        if (n_point.sales > 0) {
+            int price = n_point.price;
+            int sales = n_point.sales;
+            while (true) {
+                price++;
+                sales-=minus;
+                if (sales > 0) {
+                    list.add(new Point(price, sales));
+                } else {
+                    break;
+                }
+            }
+        }
         return list;
     }
 
